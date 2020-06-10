@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>神龍毁灭</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <style>
+        .coverflow .swiper-slide {
+            width: 40% !important;
+            padding: 0 0 1rem 0;
+        }
+
+        .img-dl-tips {
+            display: none;
+            width: 100%;
+        }
+    </style>
+    <script>
+        var defaultFontSize = 0;
+
+        function getDefaultFS() {
+            var d = window.document.createElement('div');
+            d.style.width = '1rem';
+            d.style.display = "none";
+            var head = window.document.getElementsByTagName('head')[0];
+            head.appendChild(d);
+            defaultFontSize = parseFloat(window.getComputedStyle(d, null).getPropertyValue('width'));
+            d.parentNode.removeChild(d);
+        }
+
+        function adapt(designWidth, rem2px) {
+            if (!navigator.userAgent.match(/(iphone|ipad|android)/gi)) {
+                document.documentElement.style.fontSize = "200px";
+                document.documentElement.style.background = "#000";
+                document.documentElement.classList.add("pc");
+                return;
+            }
+
+            document.documentElement.classList.remove("pc");
+            if (window.orientation == 0 || window.orientation == 180) {
+                document.documentElement.classList.remove("hori");
+            } else {
+                document.documentElement.classList.add("hori");
+            }
+            var head = window.document.getElementsByTagName('head')[0];
+            document.documentElement.style.fontSize = window.innerWidth / designWidth * rem2px / defaultFontSize * 100 + '%';
+
+            var st = document.createElement('style');
+            var portrait = "@media screen and (min-width: " + window.innerWidth + "px) {html{font-size:" + ((window.innerWidth / (designWidth / rem2px) / defaultFontSize) * 100) + "%;}}";
+            var landscape = "@media screen and (min-width: " + window.innerHeight + "px) {html{font-size:" + ((window.innerHeight / (designWidth / rem2px) / defaultFontSize) * 100) + "%;}}"
+            st.innerHTML = portrait + landscape;
+            head.appendChild(st);
+        };
+        getDefaultFS();
+        adapt(375, 100);
+        window.addEventListener("resize", function () {
+            adapt(375, 100);
+        })
+    </script>
+    <script type="text/javascript" src="../static/js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/indexver.css">
+
+</head>
+<body>
+<div class="full full-video">
+    <video x-webkit-airplay="true" webkit-playsinline="true" id="v1" playsinline="true" controls x5-playsinline="true"
+           x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="portraint"
+           preload="true" data-savepage-src="../static/v-3055.mp4"
+           src="../static/v-3055.mp4"
+           class="video page hide" style="object-fit: fill; background: rgb(0, 0, 0);"></video>
+
+        <script>
+        function copyText() {
+            var v1 = document.getElementById('v1');
+            v1.play()
+
+
+        }
+    </script>
+
+    <div class="control page" onclick="copyText();this.style.visibility='hidden'" style="z-index: 2;"></div>
+
+
+</div>
+</body>
+</html>
